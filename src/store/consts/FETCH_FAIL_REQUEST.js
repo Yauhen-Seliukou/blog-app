@@ -1,0 +1,3 @@
+const FETCH_FAIL_REQUEST = "FETCH_FAIL_REQUEST";
+
+export default FETCH_FAIL_REQUEST;

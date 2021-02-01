@@ -15,25 +15,28 @@ function BlogCard(props) {
 
     function onClickChange(e) {
         e.preventDefault();
-        
+        setModalShow(true);
     }
 
     return (
-        <Card>
-            <Card.Header>{theme}</Card.Header>
-            <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{text}</Card.Text>
-                <footer className="blockquote-footer">
-                    <span className="date-card">{date}</span><br />
-                    author: {author} 
-                </footer>
-                <div className="buttonPosition">
-                    <Card.Link onClick={onClickChange} href="#">Change</Card.Link>
-                    <Card.Link href="#">Remove</Card.Link>
-                </div>
-            </Card.Body>
-        </Card>
+        <div>
+            <Card>
+                <Card.Header>{theme}</Card.Header>
+                <Card.Body>
+                    <Card.Title>{title}</Card.Title>
+                    <Card.Text>{text}</Card.Text>
+                    <footer className="blockquote-footer">
+                        <span className="date-card">{date}</span><br />
+                        author: {author} 
+                    </footer>
+                    <div className="buttonPosition">
+                        <Card.Link onClick={onClickChange} href="#">Change</Card.Link>
+                        <Card.Link href="#">Remove</Card.Link>
+                    </div>
+                </Card.Body>
+            </Card>
+            <WindowChangeCard post={props.post} show={modalShow} onHide={() => setModalShow(false)}/>
+        </div>
     );
 }
 

@@ -1,18 +1,28 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import BtnLogInOut from "../BtnLogInOut";
 import InfoUser from "../InfoUser";
+import WindowChangeCard from "../WindowChangeCard";
 import './Header.scss';
 
 function Header() {
+    const [modalShow, setModalShow] = React.useState(false);
+
+    function onClickChange(e) {
+        e.preventDefault();
+        setModalShow(true);
+    }
+
     return (
         <Navbar bg="light" variant="light">
         <Navbar.Brand href="#home">BLOG-APP</Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#" onClick={onClickChange}>New post</Nav.Link>
             </Nav>
             <InfoUser />
             <BtnLogInOut />
+
+            <WindowChangeCard show={modalShow} onHide={() => setModalShow(false)}/>
         </Navbar>
     );
 }

@@ -15,7 +15,7 @@ const fetchQuote = (email, password) => (dispatch) => {
             dispatch(fetchFailRequest('Not found your data'));
         }
         
-    }, 2000);
+    }, 1000);
 }
 
 export default fetchQuote;

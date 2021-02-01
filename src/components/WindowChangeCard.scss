@@ -1,1 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
+
+.titlePost,
+.bodyPost,
+.themePost {
+    width: 100%;
+    border: none;
+    outline: none;
+}

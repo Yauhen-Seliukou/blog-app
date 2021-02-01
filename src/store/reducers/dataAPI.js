@@ -3,6 +3,8 @@ import FETCH_QUOTE_REQUEST from "../consts/FETCH_QUOTE_REQUEST";
 import FETCH_SUCCESS_REQUEST from "../consts/FETCH_SUCCESS_REQUEST";
 import LOG_OUT from "../consts/LOG_OUT";
 import LOG_IN from "../consts/LOG_IN";
+import CHANGE_POST from "../consts/CHANGE_POST";
+import SAVE_NEW_POST from "../consts/SAVE_NEW_POST";
 
 const initialState = {
     error: '',
@@ -25,6 +27,10 @@ function dataAPI(state = initialState, action) {
             return {...state, user: '', posts: '', error: '', page: '/', isLogin: false, textBtn: 'LOGIN'};
         case LOG_IN: 
             return {...state, user: '', posts: '', error: '', page: '/login', isLogin: false, textBtn: 'LOGIN'};
+        case CHANGE_POST: 
+            return {...state,  posts: action.payload.posts};
+        case SAVE_NEW_POST:
+            return {...state,  posts: [...state.posts, action.payload]};
         default:
             return state;
     }

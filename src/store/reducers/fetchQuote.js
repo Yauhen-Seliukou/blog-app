@@ -11,7 +11,6 @@ const fetchQuote = (email, password) => (dispatch) => {
         if (dataUser.length) {
             const postsUser = posts.filter((post) => dataUser[0].id === post.authorID);
             localStorage.setItem('user', JSON.stringify(dataUser[0]));
-            localStorage.setItem('posts', JSON.stringify({posts: postsUser}));
             dispatch(fetchSuccessRequest(dataUser[0], postsUser));
         } else {
             dispatch(fetchFailRequest('Not found your data'));

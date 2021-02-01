@@ -5,16 +5,15 @@ import './Home.scss';
 import posts from "../mocks/posts";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import fetchSuccessRequest from "../store/actions/fetchSuccessRequest";
+import fetchQuote from "../store/reducers/fetchQuote";
 
 function FirstPage() {
     if (localStorage.getItem('user')) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const dispatch = useDispatch();
+        dispatch(fetchQuote(user.email, user.password));
         const history = useHistory();
         history.push('/home');
-        const user = JSON.parse(localStorage.getItem('user'));
-        const postsUser = JSON.parse(localStorage.getItem('posts'));
-        const dispatch = useDispatch();
-        dispatch(fetchSuccessRequest(user, postsUser.posts));
     }
     return (
         <div>

@@ -8,6 +8,7 @@ import './Login.scss';
 function Login() {
     const history = useHistory();
     let page = useSelector(state => state.dataUser.page);
+    let error = useSelector(state => state.dataUser.error);
     const dispatch = useDispatch();
     
     function handleSubmit(e) {
@@ -27,6 +28,7 @@ function Login() {
 
     return (
         <div className="content-form">
+            <h3 className="title-form">Enter your login details</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group as={Row} controlId="formPlaintextEmail">
                     <Form.Label column sm="3">
@@ -45,12 +47,14 @@ function Login() {
                     <Form.Control type="password" placeholder="password" />
                     </Col>
                 </Form.Group>
-
+                
+                <p className="error-login">{error}</p>
+                
                 <Nav className="justify-content-center">
                     <Button className="buttonForm" type="submit">login</Button>
                     <Button onClick={handleClickClear}className="buttonForm" type="button">clear</Button>
                 </Nav>
-            </Form>
+            </Form>      
         </div>
     );
 }

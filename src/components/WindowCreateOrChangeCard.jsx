@@ -33,22 +33,17 @@ function WindowCreateOrChangeCard(props) {
                 theme: form.querySelector('.themePost').value
             };
             dispatch(changePost(post));
-        } else {
-        
-
-        
-        
-        const post = {
-            title: form.querySelector('.titlePost').value,
-            date: currentDate,
-            author: author1,
-            authorID: authorID1,
-            postID: currentDate,
-            text: form.querySelector('.bodyPost').value,
-            theme: form.querySelector('.themePost').value
-        };
-        dispatch(saveNewPost(post));
-        
+        } else {   
+            const post = {
+                title: form.querySelector('.titlePost').value,
+                date: currentDate,
+                author: author1,
+                authorID: authorID1,
+                postID: currentDate,
+                text: form.querySelector('.bodyPost').value,
+                theme: form.querySelector('.themePost').value
+            };
+            dispatch(saveNewPost(post));
         }
         props.onHide();
     }

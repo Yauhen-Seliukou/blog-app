@@ -1,7 +1,7 @@
 const posts = [
     {
         title: 'Rebuilt with React',
-        date: '10.12.2020',
+        date: '12.10.2020',
         author: 'John Brown',
         authorID: '1',
         postID: '1',
@@ -11,7 +11,7 @@ const posts = [
 
     {
         title: 'Bootstrap at its core',
-        date: '14.12.2020',
+        date: '12.15.2020',
         author: 'John Brown',
         authorID: '1',
         postID: '2',
@@ -21,7 +21,7 @@ const posts = [
 
     {
         title: 'Hooks',
-        date: '02.10.2020',
+        date: '10.02.2020',
         author: 'Nelly Shiver',
         authorID: '2',
         postID: '3',
@@ -31,7 +31,7 @@ const posts = [
 
     {
         title: 'useHistory',
-        date: '05.10.2020',
+        date: '10.05.2020',
         author: 'Nelly Shiver',
         authorID: '2',
         postID: '4',
@@ -41,7 +41,7 @@ const posts = [
 
     {
         title: 'useLocation',
-        date: '08.01.2021',
+        date: '01.08.2021',
         author: 'Peter Power',
         authorID: '3',
         postID: '5',
@@ -51,7 +51,7 @@ const posts = [
 
     {
         title: 'Quick Start',
-        date: '20.01.2021',
+        date: '01.20.2021',
         author: 'Jessy Lodcer',
         authorID: '4',
         postID: '6',
@@ -61,7 +61,7 @@ const posts = [
 
     {
         title: 'Installation',
-        date: '15.12.2020',
+        date: '12.13.2020',
         author: 'Jessy Lodcer',
         authorID: '4',
         postID: '7',

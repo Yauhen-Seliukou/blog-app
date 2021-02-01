@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Card } from 'react-bootstrap';
 import WindowCreateOrChangeCard from "../components/WindowCreateOrChangeCard";
 import './Card.scss';
@@ -17,6 +17,7 @@ function BlogCard(props) {
     const [modalShow, setModalShow] = React.useState(false);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const dispatch = useDispatch();
+    const isLogin = useSelector(state => state.dataUser.isLogin);
 
     function onClickChange(e) {
         e.preventDefault();
@@ -38,10 +39,12 @@ function BlogCard(props) {
                         <span className="date-card">{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</span><br />
                         author: {author} 
                     </footer>
-                    <div className="buttonPosition">
+                   {isLogin ? 
+                   <div className="buttonPosition">
                         <Card.Link onClick={onClickChange} href="#">Change</Card.Link>
                         <Card.Link onClick={onClickRemove}  href="#">Remove</Card.Link>
-                    </div>
+                    </div> 
+                    : ''}
                 </Card.Body>
             </Card>
             <WindowCreateOrChangeCard post={props.post} show={modalShow} onHide={() => setModalShow(false)}/>

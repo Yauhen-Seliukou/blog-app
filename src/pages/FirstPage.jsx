@@ -1,13 +1,21 @@
 import React from 'react';
+import { Container, Col, Row } from 'react-bootstrap';
+import Card from "../components/Card";
+import './Home.scss';
+import posts from "../mocks/posts";
 
 function FirstPage() {
     return (
         <div>
-            <p>
-                Hello! Here you can run your blog, 
-                but first you need to enter, press the corresponding 
-                button and enter your email and password.
-            </p>
+            <Container>
+            <Row>
+                <Col xs={12}>
+                    <ul>
+                        {posts ? posts.map(post => <li key={post.postID}><Card post={post}/></li>) : ''}
+                    </ul>
+                </Col>
+            </Row>
+        </Container>
         </div>
     );
 }

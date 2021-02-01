@@ -10,7 +10,10 @@ function BtnLogInOut() {
     const history = useHistory();
     const dispatch = useDispatch();
     function handleClick() {
-        textBtn === 'LOGOUT' ? dispatch(logout()) : dispatch(login());
+        if (textBtn === 'LOGOUT') {
+            dispatch(logout());
+            localStorage.clear();
+        } else dispatch(login());
     }
     history.push(page);
 

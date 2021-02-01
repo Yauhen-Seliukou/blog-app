@@ -1,9 +1,9 @@
 import CHANGE_POST from "../consts/CHANGE_POST";
 
-function changePost(data) {
+function changePost(post) {
     return {
         type: CHANGE_POST,
-        payload: data
+        payload: post
     }
 }
 

@@ -5,6 +5,7 @@ import LOG_OUT from "../consts/LOG_OUT";
 import LOG_IN from "../consts/LOG_IN";
 import CHANGE_POST from "../consts/CHANGE_POST";
 import SAVE_NEW_POST from "../consts/SAVE_NEW_POST";
+import DELETE_POST from "../consts/DELETE_POST";
 
 const initialState = {
     error: '',
@@ -28,9 +29,11 @@ function dataAPI(state = initialState, action) {
         case LOG_IN: 
             return {...state, user: '', posts: '', error: '', page: '/login', isLogin: false, textBtn: 'LOGIN'};
         case CHANGE_POST: 
-            return {...state,  posts: action.payload.posts};
+            return {...state,  posts: [...state.posts.filter(post => post.postID != action.payload.postID), action.payload]};
         case SAVE_NEW_POST:
             return {...state,  posts: [...state.posts, action.payload]};
+        case DELETE_POST:
+            return {...state,  posts: [...state.posts.filter(post => post.postID != action.payload)]};
         default:
             return state;
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import BtnLogInOut from "../BtnLogInOut";
 import InfoUser from "../InfoUser";
-import WindowChangeCard from "../WindowChangeCard";
+import WindowCreateOrChangeCard from "../WindowCreateOrChangeCard";
 import './Header.scss';
 
 function Header() {
@@ -22,7 +22,7 @@ function Header() {
             <InfoUser />
             <BtnLogInOut />
 
-            <WindowChangeCard show={modalShow} onHide={() => setModalShow(false)}/>
+            <WindowCreateOrChangeCard show={modalShow} onHide={() => setModalShow(false)}/>
         </Navbar>
     );
 }

@@ -12,7 +12,8 @@ function WindowCreateOrChangeCard(props) {
         authorID,
         postID,
         text, 
-        theme} =  props.post ? props.post : '';
+        theme
+    } =  props.post ? props.post : '';
 
     const author1 = useSelector(state => `${state.dataUser.user.name} ${state.dataUser.user.lastName}`);
     const authorID1 = useSelector(state => state.dataUser.user.id);

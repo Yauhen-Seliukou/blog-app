@@ -18,7 +18,10 @@ function BlogCard(props) {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const dispatch = useDispatch();
     const isLogin = useSelector(state => state.dataUser.isLogin);
-
+    
+    const postsUser = useSelector(state => state.dataUser.posts);
+    localStorage.setItem('posts', JSON.stringify({ postsUser }));
+    
     function onClickChange(e) {
         e.preventDefault();
         setModalShow(true);

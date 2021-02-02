@@ -10,7 +10,20 @@ const fetchQuote = (email, password) => (dispatch) => {
         const dataUser = users.filter((user) => user.email === email && user.password === password);
         if (dataUser.length) {
             const postsUser = posts.filter((post) => dataUser[0].id === post.authorID);
-            localStorage.setItem('user', JSON.stringify(dataUser[0]));
+            const { 
+                name, 
+                lastName, 
+                email, 
+                id 
+            } = dataUser[0];
+            const user = {
+                name,
+                lastName, 
+                email, 
+                id 
+            }
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('posts', JSON.stringify({ postsUser }));
             dispatch(fetchSuccessRequest(dataUser[0], postsUser));
         } else {
             dispatch(fetchFailRequest('Not found your data'));

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import { Form, Col, Row, Button, Nav } from 'react-bootstrap';
+import { Form, Col, Row, Button, Nav, Container } from 'react-bootstrap';
 import { useSelector, useDispatch} from "react-redux";
 import fetchQuote from "../store/reducers/fetchQuote";
 import './Login.scss';
@@ -27,7 +27,9 @@ function Login() {
     }
 
     return (
-        <div className="content-form">
+        <Container>
+        <Row className="justify-content-center">
+        <Col xl="5" lg="6" md="9" sm="11" xs="10">
             <h3 className="title-form">Enter your login details</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group as={Row} controlId="formPlaintextEmail">
@@ -35,7 +37,7 @@ function Login() {
                     Email
                     </Form.Label>
                     <Col sm="9">
-                    <Form.Control type="email"  placeholder="email@example.com" />
+                    <Form.Control type="email"  placeholder="email@example.com" required />
                     </Col>
                 </Form.Group>
 
@@ -44,7 +46,7 @@ function Login() {
                     Password
                     </Form.Label>
                     <Col sm="9">
-                    <Form.Control type="password" placeholder="password" />
+                    <Form.Control type="password" placeholder="password" required />
                     </Col>
                 </Form.Group>
                 
@@ -54,8 +56,10 @@ function Login() {
                     <Button className="buttonForm" type="submit">login</Button>
                     <Button onClick={handleClickClear}className="buttonForm" type="button">clear</Button>
                 </Nav>
-            </Form>      
-        </div>
+            </Form>   
+        </Col> 
+        </Row> 
+        </Container>
     );
 }
 

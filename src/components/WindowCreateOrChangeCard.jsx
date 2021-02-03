@@ -56,18 +56,18 @@ function WindowCreateOrChangeCard(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
-                <textarea className="themePost" placeholder="Theme">{theme}</textarea>
-            </Modal.Header>
-            <Modal.Body>
-                <form>
-                    <textarea className="titlePost" placeholder="Title">{title}</textarea>  
-                    <textarea className="bodyPost" placeholder="Text">{text}</textarea>
-                </form>               
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={handleSave}>Save</Button>
-            </Modal.Footer>
+            <form onSubmit={handleSave}>
+                <Modal.Header closeButton>
+                    <textarea className="themePost" placeholder="Theme" required>{theme}</textarea>
+                </Modal.Header>
+                <Modal.Body>
+                    <textarea className="titlePost" placeholder="Title" required>{title}</textarea>  
+                    <textarea className="bodyPost" placeholder="Text" required>{text}</textarea>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button type="onSubmit">Save</Button>
+                </Modal.Footer>
+            </form>
         </Modal>
     );
 }

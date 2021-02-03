@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Col } from "react-bootstrap";
 import BtnLogInOut from "../BtnLogInOut";
 import InfoUser from "../InfoUser";
 import WindowCreateOrChangeCard from "../WindowCreateOrChangeCard";

@@ -12,7 +12,8 @@ function BlogCard(props) {
         author,
         postID, 
         text, 
-        theme} = props.post;
+        theme
+    } = props.post;
     
     const [modalShow, setModalShow] = React.useState(false);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -40,7 +41,7 @@ function BlogCard(props) {
                     <Card.Text>{text}</Card.Text>
                     <footer className="blockquote-footer">
                         <span className="date-card">{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</span><br />
-                        author: {author} 
+                        <span>author: {author}</span>
                     </footer>
                    {isLogin ? 
                    <div className="buttonPosition">

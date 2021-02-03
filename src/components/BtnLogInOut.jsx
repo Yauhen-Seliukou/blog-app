@@ -9,14 +9,15 @@ function BtnLogInOut() {
     const page = useSelector(state => state.dataUser.page);
     const history = useHistory();
     const dispatch = useDispatch();
+    history.push(page);
+    
     function handleClick() {
         if (textBtn === 'LOGOUT') {
             dispatch(logout());
             localStorage.clear();
         } else dispatch(login());
     }
-    history.push(page);
-
+    
     return (
         <Button variant="outline-primary" onClick={handleClick}>
             {textBtn}

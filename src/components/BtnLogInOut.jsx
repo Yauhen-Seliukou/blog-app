@@ -19,7 +19,7 @@ function BtnLogInOut() {
     }
     
     return (
-        <Button variant="outline-primary" onClick={handleClick}>
+        <Button variant="primary" onClick={handleClick}>
             {textBtn}
         </Button>
     );

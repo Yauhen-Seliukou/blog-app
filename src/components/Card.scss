@@ -1,15 +1,29 @@
 @import "~bootstrap/scss/bootstrap";
 
-.buttonPosition {
+.button-position {
     text-align: end;
 }
 
+.button-card {
+    border: none;
+    background-color: white;
+    color: #007bff;
+}
+
+.button-card:hover {
+    text-decoration: underline;
+}
+
 li {
-    margin: 5px auto;
+    margin: 30px auto;
     width: 80%;
 }
 
 .date-card {
     font-size: 0.9em;
     color: #6c757d;
+}
+
+.title-card {
+    cursor: pointer;
 }

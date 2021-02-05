@@ -1,9 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
 
-.titlePost,
-.bodyPost,
-.themePost {
+.title-post,
+.body-post {
     width: 100%;
     border: none;
     outline: none;
+    font-style: italic;
+    color: rgb(83, 82, 82);
+}
+
+.body-post {
+    height: 100px;
+}
+
+.title-label {
+    padding-top: 10px;
+    font-size: 1.1em;
 }

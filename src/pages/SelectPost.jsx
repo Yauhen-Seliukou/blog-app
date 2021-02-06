@@ -9,7 +9,7 @@ function SelectPost() {
 
     return (
         <div className="select-post">
-            {post ? <Post post={post} /> : ''}
+            {post ? <Post isSelectPost={true} post={post} /> : ''}
         </div>
         
     );

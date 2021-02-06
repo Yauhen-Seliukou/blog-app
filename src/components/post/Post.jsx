@@ -8,8 +8,8 @@ import './Post.scss';
 import deletePost from "../../store/actions/deletePost";
 import { getUserId } from "../../store/selectors/getUserData";
 import { getAllPosts } from "../../store/selectors/getPostData";
-import { getDataAuthorization } from "../../store/selectors/getDataAuthorization";
 import formatDate from "../../services/formatDade";
+import checkDescriptionLength from "../../services/checkDescriptionLength";
 
 function Post(props) {
     const {
@@ -20,13 +20,14 @@ function Post(props) {
         authorID,
         description
     } = props.post;
+
+    const isSelectPost = props?.isSelectPost || '';
     
     const history = useHistory();
     const dispatch = useDispatch();
     const [isModalShow, setModalShow] = useState(false);
     const [isModalDeleteShow, setModalDeleteShow] = useState(false);
     const userId = useSelector(state => getUserId(state));
-    const { page } = useSelector(state => getDataAuthorization(state));
     const postsUser = useSelector(state => getAllPosts(state));
     localStorage.setItem('posts', JSON.stringify({ postsUser }));
     
@@ -39,24 +40,19 @@ function Post(props) {
     }
 
     const removePost = () => {
-        if (page === '/post') {
-            history.push('/home');
-        }
         dispatch(deletePost(postID));
     }
 
     const onClickOpen = () => {
-        if (page !== '/post') {
-            history.push('/post');
-            localStorage.setItem('postID', postID);
-        }
+        history.push('/post');
+        localStorage.setItem('postID', postID); 
     }
 
     return (
         <Card>
             <Card.Body>
                 <Card.Title className="title-card" onClick={onClickOpen}>{title}</Card.Title>
-                <Card.Text>{description}</Card.Text>                
+                <Card.Text>{isSelectPost ? description : checkDescriptionLength(description)}</Card.Text>                
                 <small className="text-muted">
                     <span>Date: {formatDate(date)}</span><br />
                     <span>Author: {author}</span>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Card } from 'react-bootstrap';
 import WindowCreateOrChangeCard from "../windowCreateCangeCard/WindowCreateOrChangeCard";
+import WindowDeletePost from "../windowDeletePost/WindowDeletePost";
 import './Post.scss';
 import deletePost from "../../store/actions/deletePost";
 import { getUserId } from "../../store/selectors/getUserData";
@@ -23,6 +24,7 @@ function Post(props) {
     const history = useHistory();
     const dispatch = useDispatch();
     const [isModalShow, setModalShow] = useState(false);
+    const [isModalDeleteShow, setModalDeleteShow] = useState(false);
     const userId = useSelector(state => getUserId(state));
     const { page } = useSelector(state => getDataAuthorization(state));
     const postsUser = useSelector(state => getAllPosts(state));
@@ -33,6 +35,10 @@ function Post(props) {
     }
 
     const onClickRemove = () => {
+        setModalDeleteShow(true);
+    }
+
+    const removePost = () => {
         if (page === '/post') {
             history.push('/home');
         }
@@ -62,7 +68,16 @@ function Post(props) {
                 </div> 
                 : ''}
             </Card.Body>
-            <WindowCreateOrChangeCard post={props.post} show={isModalShow} onHide={() => setModalShow(false)}/>
+            <WindowCreateOrChangeCard 
+                post={props.post} 
+                show={isModalShow} 
+                onHide={() => setModalShow(false)} 
+            />
+            <WindowDeletePost 
+                show={isModalDeleteShow} 
+                onDelete={() => removePost()} 
+                onClose={() => setModalDeleteShow(false)} 
+            />
         </Card>
     );
 }

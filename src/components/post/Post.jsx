@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Card } from 'react-bootstrap';
+import { Card, Badge } from 'react-bootstrap';
 import WindowCreateOrChangeCard from "../windowCreateCangeCard/WindowCreateOrChangeCard";
 import WindowDeletePost from "../windowDeletePost/WindowDeletePost";
 import './Post.scss';
@@ -18,7 +18,8 @@ function Post(props) {
         author,
         postID, 
         authorID,
-        description
+        description,
+        category
     } = props.post;
 
     const isSelectPost = props?.isSelectPost || '';
@@ -53,10 +54,15 @@ function Post(props) {
             <Card.Body>
                 <Card.Title className="title-card" onClick={onClickOpen}>{title}</Card.Title>
                 <Card.Text>{isSelectPost ? description : checkDescriptionLength(description)}</Card.Text>                
+                               
+                <Badge variant="info">{category}</Badge> <br />
+                
                 <small className="text-muted">
-                    <span>Date: {formatDate(date)}</span><br />
+                    <span>Create: {formatDate(date)}</span><br />
+                    {props.post.dateUpdate ? <><span>Update: {formatDate(props.post.dateUpdate)}</span><br /></> : ''}
                     <span>Author: {author}</span>
-                </small>            
+                </small>          
+
                 {authorID === userId ? 
                 <div className="button-position">
                     <button className="button-card" onClick={onClickChange}>Change</button>

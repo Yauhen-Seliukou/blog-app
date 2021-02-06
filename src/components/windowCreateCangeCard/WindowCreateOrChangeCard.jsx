@@ -10,7 +10,8 @@ function WindowCreateOrChangeCard(props) {
     const { post, onHide } =  props;
     const initState = {
         title: post?.title || '',
-        description: post?.description || ''
+        description: post?.description || '',
+        category: post?.category || ''
     };
     const [formState, setFormState] = useState(initState);
     const author = useSelector(state => getUserName(state));
@@ -25,6 +26,10 @@ function WindowCreateOrChangeCard(props) {
         setFormState({...formState, description: e.target.value});
     }
 
+    const handleCategoryChange = (e) => {
+        setFormState({...formState, category: e.target.value});
+    }
+
     const handleSave = (e) => {
         e.preventDefault();
         onHide();
@@ -33,6 +38,8 @@ function WindowCreateOrChangeCard(props) {
                 ...post,
                 title: formState.title,
                 description: formState.description,
+                category: formState.category,
+                dateUpdate: new Date()
             };
             dispatch(changePost(updatedPost));
         } else {   
@@ -43,6 +50,7 @@ function WindowCreateOrChangeCard(props) {
                 authorID: authorID,
                 postID: Date.now(),
                 description: formState.description,
+                category: formState.category
             };
             dispatch(saveNewPost(post));
         }
@@ -79,6 +87,18 @@ function WindowCreateOrChangeCard(props) {
                         onChange={handleDescriptionChange}
                         required
                     />
+                    <FormLabel className="title-label">Categoty</FormLabel>
+                    <FormControl 
+                        as="select" 
+                        value={formState.category}
+                        onChange={handleCategoryChange}
+                    >
+                        <option>Sport</option>
+                        <option>Work</option>
+                        <option>Music</option>
+                        <option>Game</option>
+                        <option>Movie</option>
+                    </FormControl>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button type="onSubmit">Save</Button>

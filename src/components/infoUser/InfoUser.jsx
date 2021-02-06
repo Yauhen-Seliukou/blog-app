@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSelector } from "react-redux";
+import { getUserName } from "../../store/selectors/getUserData";
 import './InfoUser.scss';
 
 function InfoUser() {
-    const user = useSelector(state => state.dataUser.user);
-    const dataUser = user ? <span>{user.name} {user.lastName}</span> : '';
+    const userName = useSelector(state => getUserName(state));
 
     return (
         <div className="info-user">
-            {dataUser}
+            {userName}
         </div>
     );
 }

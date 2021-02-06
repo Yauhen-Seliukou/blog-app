@@ -9,3 +9,19 @@ ul {
 .checkbox-label {
     margin-left: 5px;
 }
+
+.checbox-my-post,
+.btn-new-post {
+    display: inline-block;
+    width: 50%;
+}
+
+.btn-new-post {
+    text-align: end;
+}
+
+.not-posts {
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 45%;
+}

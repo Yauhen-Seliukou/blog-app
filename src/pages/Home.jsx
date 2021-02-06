@@ -1,38 +1,51 @@
-import React, { useState } from 'react';
-import { Container, Col, Row, Button } from 'react-bootstrap';
-import Card from "../components/Card"
-import './Home.scss';
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import WindowCreateOrChangeCard from "../components/WindowCreateOrChangeCard";
+import { Button, FormCheck } from "react-bootstrap";
+import Post from "../components/post/Post"
+import WindowCreateOrChangeCard from "../components/windowCreateCangeCard/WindowCreateOrChangeCard";
+import { getAllPosts, getUserPosts } from "../store/selectors/getPostData";
+import { getUserId } from "../store/selectors/getUserData";
+import './Home.scss';
 
 function Home() {
-    const posts = useSelector(state => state.dataUser.posts);
-    const [modalShow, setModalShow] = useState(false);
-    const user = useSelector(state => state.dataUser.user);
+    const [isModalShow, setModalShow] = useState(false);
+    const [isOnlyMyPosts, setOnlyMyPosts] = useState(false);
 
-    function onClick() {
+    const userId = useSelector(state => getUserId(state));
+    const posts = useSelector(state => isOnlyMyPosts ? getUserPosts(state, userId) : getAllPosts(state));
+
+    const handleClick = () => {
         setModalShow(true);
     }
-    return (
-        <Container>
-            <Row className="justify-content-center">
-                <Col xs={10}>
-                    <div className="post-params">
-                        <label>
-                            <input type="checkbox" />
-                            <span className="checkbox-label">Only my post</span>
-                        </label>
-                        
-                        <Button variant="primary" onClick={onClick}>New post</Button>
-                    </div>
-                    <ul>
-                        {posts ? posts.map(post => <li key={post.postID}><Card post={post}/></li>) : ''}
-                    </ul>
-                </Col>
-            </Row>
 
-            <WindowCreateOrChangeCard show={modalShow} onHide={() => setModalShow(false)}/>
-        </Container>
+    const handleChangeCheckbox = (e) => {
+        setOnlyMyPosts(e.target.checked);
+    }
+
+    return (
+        <div>
+            <span className="checbox-my-post">
+                <FormCheck  
+                    type="checkbox" 
+                    label="Only my posts" 
+                    inline
+                    onChange={handleChangeCheckbox}
+                />
+            </span>
+            <span className="btn-new-post">
+                <Button 
+                    variant="primary" 
+                    onClick={handleClick}
+                >
+                    New post
+                </Button>
+            </span> 
+            <ul>
+                {posts.length ? posts.map(post => <li key={post.postID}><Post post={post}/></li>) 
+                                                : <div className="not-posts">Your posts were not found.</div>}
+            </ul>
+            <WindowCreateOrChangeCard show={isModalShow} onHide={() => setModalShow(false)}/>
+        </div>
     );
 }
 

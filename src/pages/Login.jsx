@@ -1,49 +1,68 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory } from "react-router-dom";
 import { Form, Col, Row, Button, Nav, Container, Card } from 'react-bootstrap';
 import { useSelector, useDispatch} from "react-redux";
-import fetchQuote from "../store/reducers/fetchQuote";
+import fetchLogin from "../store/reducers/fetchLogin";
+import { getDataAuthorization } from "../store/selectors/getDataAuthorization";
 import './Login.scss';
 
 function Login() {
     const history = useHistory();
-    let page = useSelector(state => state.dataUser.page);
-    let error = useSelector(state => state.dataUser.error);
+    const { page, error } = useSelector(state => getDataAuthorization(state));
     const dispatch = useDispatch();
+    const [loginForm, setLoginForm] = useState({});
+    const emailInput = useRef(null);
+    const passwordInput = useRef(null);
     
-    function handleSubmit(e) {
+    const handleChangeEmail = (e) => {
+        setLoginForm({ ...loginForm, email: e.target.value });
+    }
+
+    const handleChangePassword = (e) => {
+        setLoginForm({ ...loginForm, password: e.target.value });
+    }
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const email = e.target[0].value;
-        const password = e.target[1].value;
-        
-        dispatch(fetchQuote(email, password));
+        dispatch(fetchLogin(loginForm.email, loginForm.password));
         history.push(page);
     }
 
-    function handleClickClear(e) {
-        const form = e.target.closest('Form');
-        form.querySelector('[type=email]').value = '';
-        form.querySelector('[type=password]').value = '';
+    const handleClickClear = (e) => {
+        emailInput.current.value = '';
+        passwordInput.current.value ='';
     }
 
     return (
         <Container>
             <Row className="justify-content-center">
-                <Col xl="5" lg="6" md="9" sm="10" xs="10">
+                <Col xl="6" lg="6" md="8" sm="11" xs="12">
                     <Card className="login">
                         <h3 className="title-form">Enter your login details</h3>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group as={Row} controlId="formPlaintextEmail">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email"  placeholder="email@example.com" required />
+                                <Form.Control 
+                                    type="email"  
+                                    placeholder="email@example.com" 
+                                    required
+                                    onChange={handleChangeEmail}
+                                    ref={emailInput}
+                                />
                             </Form.Group>
 
                             <Form.Group as={Row} controlId="formPlaintextPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="password" required />
+                                <Form.Control 
+                                    type="password" 
+                                    placeholder="password" 
+                                    required 
+                                    onChange={handleChangePassword}
+                                    ref={passwordInput}    
+                                />
                             </Form.Group>
                             
-                            <p className="error-login">{error}</p>
+                            <div className="error-login">{error}</div>
                             
                             <Nav className="justify-content-center">
                                 <Button className="button-form" type="submit">Login</Button>

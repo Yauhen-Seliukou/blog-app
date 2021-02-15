@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import changePost from "../../store/actions/changePost";
-import saveNewPost from "../../store/actions/saveNewPost";
 import { Modal, Button, FormControl, FormLabel, Form } from "react-bootstrap";
-import { getUserName, getUserId } from "../../store/selectors/getUserData";
+import { changePost, saveNewPost } from "../../store/actions/postsActions";
+import { selectUserName, selectUserId } from "../../store/selectors/UserSelectors";
+
 import "./WindowCreateOrChangeCard.scss";
 
 function WindowCreateOrChangeCard(props) {
-    const { post, onHide } =  props;
+    const dispatch = useDispatch();
+    const { show, post, onClose } =  props;
     const initState = {
         title: post?.title || '',
         description: post?.description || '',
-        category: post?.category || ''
+        categories: post?.categories || ''
     };
     const [formState, setFormState] = useState(initState);
-    const author = useSelector(state => getUserName(state));
-    const authorID = useSelector(state => getUserId(state));
-    const dispatch = useDispatch();
+    const author = useSelector(selectUserName);
+    const authorID = useSelector(selectUserId);
 
     const handleTitleChange = (e) => {
         setFormState({...formState, title: e.target.value});
@@ -27,18 +27,18 @@ function WindowCreateOrChangeCard(props) {
     }
 
     const handleCategoryChange = (e) => {
-        setFormState({...formState, category: e.target.value});
+        const selectedValue = [...e.target.options].filter(x => x.selected).map(y => y.value);
+        setFormState({...formState, categories: selectedValue});
     }
 
     const handleSave = (e) => {
         e.preventDefault();
-        onHide();
         if (post) {
             const updatedPost = {
                 ...post,
                 title: formState.title,
                 description: formState.description,
-                category: formState.category,
+                categories: formState.categories,
                 dateUpdate: new Date()
             };
             dispatch(changePost(updatedPost));
@@ -50,18 +50,21 @@ function WindowCreateOrChangeCard(props) {
                 authorID: authorID,
                 postID: Date.now(),
                 description: formState.description,
-                category: formState.category
-            };
+                categories: formState.categories,
+            };            
             dispatch(saveNewPost(post));
         }
+        onClose();
     }
 
     return (
         <Modal
-            {...props}
+            show={show}
+            onHide={onClose}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            className="modal-create-change-window"
         >
             <Form onSubmit={handleSave}>
                 <Modal.Header closeButton>
@@ -87,11 +90,13 @@ function WindowCreateOrChangeCard(props) {
                         onChange={handleDescriptionChange}
                         required
                     />
-                    <FormLabel className="title-label">Categoty</FormLabel>
+                    <FormLabel className="title-label">Categories</FormLabel>
                     <FormControl 
                         as="select" 
-                        value={formState.category}
+                        value={formState.categories}
                         onChange={handleCategoryChange}
+                        multiple
+                        required
                     >
                         <option>Sport</option>
                         <option>Work</option>

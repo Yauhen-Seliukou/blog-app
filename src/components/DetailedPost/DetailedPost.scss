@@ -1,0 +1,50 @@
+@import "~bootstrap/scss/bootstrap";
+
+.button-post-wrapper {
+    text-align: end;
+    
+    .button-post {
+        border: none;
+        background-color: white;
+        color: #007bff;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.detailed-post {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+    .body-post {
+        flex-grow: 1;
+
+        .title-post {
+            font-size: 2.5em;
+            margin-top: 50px;
+            font-style: italic;
+        }
+
+        .description-post {
+            font-size: 1.3em;
+        }
+
+        .category-post {
+            font-size: 1.1em;
+            margin: 10px 0 40px 0;
+        }
+
+        .one-category {
+            margin-right: 5px;
+        }
+    }
+
+    .bottom-post {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+}

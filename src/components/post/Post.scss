@@ -2,27 +2,28 @@
 
 .button-position {
     text-align: end;
+    
+    .button-card {
+        border: none;
+        background-color: white;
+        color: #007bff;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    } 
 }
 
-.button-card {
-    border: none;
-    background-color: white;
-    color: #007bff;
+.wrapper-post {
+    margin: 10px 0;
+
+    .title-post {
+        cursor: pointer;
+    }
+    
+    .one-category {
+        margin-right: 5px;
+    }
+
 }
 
-.button-card:hover {
-    text-decoration: underline;
-}
-
-li {
-    margin: 30px 0;
-}
-
-.date-card {
-    font-size: 0.9em;
-    color: #6c757d;
-}
-
-.title-card {
-    cursor: pointer;
-}

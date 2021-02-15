@@ -1,3 +1,0 @@
-const POSTS_FAIL_REQUEST = "POSTS_FAIL_REQUEST";
-
-export default POSTS_FAIL_REQUEST;

@@ -1,23 +1,27 @@
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch} from "react-redux";
+import { useDispatch} from "react-redux";
 import { Button } from "react-bootstrap";
-import logout from "../../store/actions/logout";
-import login from "../../store/actions/login";
-import { getDataAuthorization } from "../../store/selectors/getDataAuthorization";
+import { logout, login } from "../../store/actions/loginAction";
 
-function BtnLogInOut() {
-    const { textBtn, page } = useSelector(state => getDataAuthorization(state));
+const BtnLogInOut = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    history.push(page);
-    
+    const userName = props.userName;
+
     const handleClick = () => {
-        textBtn === 'LOGOUT' ? dispatch(logout()) : dispatch(login());
+        if(userName) {
+            dispatch(logout());
+            history.push('/');
+        } else {
+            dispatch(login());
+            history.push('/login');
+        }
     }
     
     return (
         <Button variant="primary" onClick={handleClick}>
-            {textBtn}
+            {userName ? 'LOGOUT' : 'LOGIN'}
         </Button>
     );
 }

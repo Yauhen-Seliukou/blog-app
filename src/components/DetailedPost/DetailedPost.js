@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { Card, Badge } from 'react-bootstrap';
+import { Badge } from 'react-bootstrap';
 import WindowCreateOrChangeCard from "../WindowCreateCangeCard/WindowCreateOrChangeCard";
 import WindowDeletePost from "../WindowDeletePost/WindowDeletePost";
 import { deletePost } from "../../store/actions/postsActions";
 import { selectUserId } from "../../store/selectors/UserSelectors";
 import formatDate from "../../services/formatDade";
-import getShortDescription from "../../services/getShortDescription";
 
-import './Post.scss';
+import './DetailedPost.scss';
 
-function Post(props) {
-    const history = useHistory();
+const DetailedPost = (props) => {
     const dispatch = useDispatch();
-
+    
     const {
         title, 
-        date, 
+        date,
+        dateUpdate,
         author,
         postID, 
         authorID,
@@ -27,6 +25,7 @@ function Post(props) {
     
     const [isModalShow, setModalShow] = useState(false);
     const [isModalDeleteShow, setModalDeleteShow] = useState(false);
+    
     const userId = useSelector(selectUserId);
     
     const onClickChange = () => {
@@ -41,30 +40,30 @@ function Post(props) {
         dispatch(deletePost(postID));
     }
 
-    const onClickOpen = () => {
-        history.push(`/post/${postID}`);
-    }
-
     return (
-        <Card className="wrapper-post">
-            <Card.Body>
-                <Card.Title className="title-post" onClick={onClickOpen}>{title}</Card.Title>
-                <Card.Text>{getShortDescription(description)}</Card.Text>                
-                               
-                {categories.map(category => <Badge className="one-category" variant="info">{category}</Badge>)}
-                
+        <div className="detailed-post">
+            <div className="body-post">
+                <h2 className="title-post">{title}</h2>
+                <div className="category-post">
+                    {categories.map(category => <Badge className="one-category" variant="info">{category}</Badge>)}
+                </div>
+                <div className="description-post">{description}</div>                
+            </div>
+            <div className="bottom-post">
                 <small className="text-muted">
-                    <div>Create: {formatDate(date, false)}</div>
+                    <div>Created: {formatDate(date, true)}</div>
+                    {dateUpdate ? <div>Update: {formatDate(dateUpdate, true)}</div> : ''}
                     <div>Author: {author}</div>
                 </small>          
 
                 {authorID === userId ? 
-                <div className="button-position">
-                    <button className="button-card" onClick={onClickChange}>Change</button>
-                    <button className="button-card" onClick={onClickRemove}>Remove</button>
+                <div className="button-post-wrapper">
+                    <button className="button-post" onClick={onClickChange}>Change</button>
+                    <button className="button-post" onClick={onClickRemove}>Remove</button>
                 </div> 
                 : ''}
-            </Card.Body>
+            </div>
+            
             <WindowCreateOrChangeCard 
                 post={props.post} 
                 show={isModalShow} 
@@ -75,8 +74,8 @@ function Post(props) {
                 onDelete={() => removePost()} 
                 onClose={() => setModalDeleteShow(false)} 
             />
-        </Card>
+        </div>
     );
 }
 
-export default Post;
+export default DetailedPost;

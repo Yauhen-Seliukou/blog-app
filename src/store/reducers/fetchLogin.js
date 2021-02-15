@@ -1,9 +1,12 @@
-import loginFailRequest from "../actions/loginFailRequest";
-import loginQuoteRequest from "../actions/loginQuoteRequest";
-import loginSuccessRequest from "../actions/loginSuccessRequest";
+import { 
+    loginFailRequest, 
+    loginQuoteRequest, 
+    loginSuccessRequest 
+} from "../actions/loginAction";
+
 import users from "../../mocks/users";
 
-const fetchLogin = (email, password) => (dispatch) => { 
+const fetchLogin = ({ email, password }) => (dispatch) => { 
     dispatch(loginQuoteRequest());
     setTimeout(() => {
         const dataUser = users.filter((user) => user.email === email && user.password === password);

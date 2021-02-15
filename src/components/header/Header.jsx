@@ -1,11 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
-import BtnLogInOut from "../btnLogInOut/BtnLogInOut";
-import InfoUser from "../infoUser/InfoUser";
+import { useSelector } from "react-redux";
+import { Navbar, Nav, NavbarBrand } from "react-bootstrap";
+import BtnLogInOut from "../BtnLogInOut/BtnLogInOut";
+import InfoUser from "../UserInfo/UserInfo";
+import { selectUserName } from "../../store/selectors/UserSelectors";
+
 import './Header.scss';
 
 function Header() {
+    const userName = useSelector(selectUserName);
     const history = useHistory();
 
     const handleClick = () => {
@@ -14,10 +18,10 @@ function Header() {
 
     return (
         <Navbar bg="dark" variant="dark">
-        <Navbar.Brand className="logo" onClick={handleClick}>BLOG-APP</Navbar.Brand>
-            <Nav className="mr-auto"></Nav>
-            <InfoUser />
-            <BtnLogInOut />
+        <NavbarBrand className="logo" onClick={handleClick}>BLOG-APP</NavbarBrand>
+        <Nav className="mr-auto"></Nav>
+            <InfoUser userName={userName} />
+            <BtnLogInOut userName={userName} />
         </Navbar>
     );
 }

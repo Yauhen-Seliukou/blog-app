@@ -1,12 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
 
-.title-post,
-.body-post {
-    font-style: italic;
-    color: rgb(83, 82, 82);
-}
+.modal-create-change-window {
+    .title-post,
+    .body-post {
+        font-style: italic;
+        color: rgb(83, 82, 82);
+    }
 
-.title-label {
-    margin-top: 10px;
-    font-size: 1.1em;
+    .title-label {
+        margin-top: 10px;
+        font-size: 1.1em;
+    }
 }

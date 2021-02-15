@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import getUser from "./getUser";
-import getPosts from "./getPosts";
+import userReducer from "./userReducer";
+import postReducer from "./postReducer";
 
 const reducer = combineReducers({
-    authorizationData: getUser,
-    posts: getPosts
+    currentUser: userReducer,
+    posts: postReducer
 });
 
 export default reducer;

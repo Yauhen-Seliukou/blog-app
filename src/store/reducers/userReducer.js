@@ -33,7 +33,7 @@ const userReducer = (state = initialState, action) => {
             };
         
         case LOG_OUT:
-            localStorage.clear(); 
+            localStorage.setItem('user', null); 
             return {
                 ...state, 
                 user: null, 

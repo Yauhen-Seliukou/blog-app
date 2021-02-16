@@ -8,7 +8,8 @@ import posts from "../../mocks/posts";
 const fetchPosts = () => (dispatch) => { 
     dispatch(postsQuoteRequest());
     setTimeout(() => {
-        dispatch(postsSuccessRequest(posts));
+        const postFromLocalStorage = JSON.parse(localStorage.getItem('posts'))?.posts || [];
+        dispatch(postsSuccessRequest(postFromLocalStorage.length ? postFromLocalStorage : posts));
     }, 1000);
 }
 

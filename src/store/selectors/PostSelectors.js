@@ -1,7 +1,5 @@
 import { createSelector } from "reselect";
-
 import { selectUserId } from "./UserSelectors";
-
 
 
 export const selectAllPost = (state) => {
@@ -15,5 +13,5 @@ export const selectUserPost = createSelector(
 );
 
 export const selectPostById = (state, postId) => {
-    return state.posts?.list.find(post => post.postID === postId);
+    return state.posts.list.find(post => post.postID === postId);
 };

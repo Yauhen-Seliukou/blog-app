@@ -24,8 +24,8 @@ function Home() {
         setOnlyMyPosts(e.target.checked);
     }
 
-    const postsUser = useSelector(selectAllPost);
-    localStorage.setItem('posts', JSON.stringify({ postsUser }));
+    const allPosts = useSelector(selectAllPost);
+    localStorage.setItem('posts', JSON.stringify({ posts: allPosts }));
 
     return (
         <Container>
@@ -38,7 +38,7 @@ function Home() {
                     />
                     : ''}
                     
-                    {posts.length ? posts.map(post => <Post post={post} key={post.postID} />) 
+                    {posts.length ? posts.map(post => <Post post={post} key={(post.postID).toString()} />) 
                                   : <div className="not-posts">Your posts were not found.</div>}
                     <WindowCreateOrChangeCard show={isModalShow} onClose={() => setModalShow(false)}/>
                 </Col>

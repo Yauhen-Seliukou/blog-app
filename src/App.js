@@ -1,20 +1,23 @@
-import './App.scss';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SelectPost from './pages/SelectPost/SelectPost';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import fetchPosts from "./store/reducers/fetchPosts";
 import { loginSuccessRequest } from "../src/store/actions/loginAction";
+import { postsSuccessRequest } from "./store/actions/postsActions";
+import posts from "./mocks/posts";
+
+import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('user'));
+  const postFromLocalStorage = JSON.parse(localStorage.getItem('posts'))?.posts || [];
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(postsSuccessRequest(postFromLocalStorage.length ? postFromLocalStorage : posts));
     dispatch(loginSuccessRequest(user));
   });
 

@@ -9,8 +9,8 @@ import "./SelectPost.scss";
 const SelectPost = (props) => {
     const post = useSelector(state => selectPostById(state, +props.match.params.postID));
 
-    const postsUser = useSelector(selectAllPost);
-    localStorage.setItem('posts', JSON.stringify({ postsUser }));
+    const allPosts = useSelector(selectAllPost);
+    localStorage.setItem('posts', JSON.stringify({ posts: allPosts }));
 
     return (
         <Container className="wrapper-container">

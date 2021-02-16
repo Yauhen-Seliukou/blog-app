@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     error: '',
-    list: ''
+    list: []
 };
 
 const postReducer = (state = initialState, action) => {

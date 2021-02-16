@@ -12,7 +12,7 @@ function WindowCreateOrChangeCard(props) {
     const initState = {
         title: post?.title || '',
         description: post?.description || '',
-        categories: post?.categories || ''
+        categories: post?.categories || []
     };
     const [formState, setFormState] = useState(initState);
     const author = useSelector(selectUserName);

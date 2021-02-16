@@ -7,7 +7,7 @@ function WindowDeletePost(props) {
     return (
         <Modal 
             show={show}
-            onclose={onClose}
+            onClose={onClose}
             onDelete={onDelete}
         >
             <Modal.Header>

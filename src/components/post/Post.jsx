@@ -51,7 +51,7 @@ function Post(props) {
                 <Card.Title className="title-post" onClick={onClickOpen}>{title}</Card.Title>
                 <Card.Text>{getShortDescription(description)}</Card.Text>                
                                
-                {categories.map(category => <Badge className="one-category" variant="info">{category}</Badge>)}
+                {categories.map(category => <Badge className="one-category" variant="info" key={category}>{category}</Badge>)}
                 
                 <small className="text-muted">
                     <div>Create: {formatDate(date, false)}</div>

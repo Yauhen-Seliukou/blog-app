@@ -45,7 +45,7 @@ const DetailedPost = (props) => {
             <div className="body-post">
                 <h2 className="title-post">{title}</h2>
                 <div className="category-post">
-                    {categories.map(category => <Badge className="one-category" variant="info">{category}</Badge>)}
+                    {categories.map(category => <Badge className="one-category" variant="info" key={category}>{category}</Badge>)}
                 </div>
                 <div className="description-post">{description}</div>                
             </div>

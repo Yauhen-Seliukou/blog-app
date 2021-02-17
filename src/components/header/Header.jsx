@@ -1,30 +1,27 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Navbar, Nav, Col } from "react-bootstrap";
-import BtnLogInOut from "../BtnLogInOut";
-import InfoUser from "../InfoUser";
-import WindowCreateOrChangeCard from "../WindowCreateOrChangeCard";
+import { selectUserName } from "../../store/selectors/UserSelectors";
+import { Navbar, Nav, NavbarBrand } from "react-bootstrap";
+import BtnLogInOut from "../BtnLogInOut/BtnLogInOut";
+import InfoUser from "../UserInfo/UserInfo";
+
 import './Header.scss';
 
 function Header() {
-    const [modalShow, setModalShow] = React.useState(false);
-    const user = useSelector(state => state.dataUser.user);
+    const userName = useSelector(selectUserName);
+    const history = useHistory();
 
-    function onClickChange(e) {
-        e.preventDefault();
-        setModalShow(true);
+    const handleClick = () => {
+        history.push('/');
     }
 
     return (
-        <Navbar bg="light" variant="light">
-        <Navbar.Brand href="#home">BLOG-APP</Navbar.Brand>
-            <Nav className="mr-auto">
-                {user ? <Nav.Link href="#" onClick={onClickChange}>New post</Nav.Link> : ""}
-            </Nav>
-            <InfoUser />
-            <BtnLogInOut />
-
-            <WindowCreateOrChangeCard show={modalShow} onHide={() => setModalShow(false)}/>
+        <Navbar bg="dark" variant="dark">
+        <NavbarBrand className="logo" onClick={handleClick}>BLOG-APP</NavbarBrand>
+        <Nav className="mr-auto"></Nav>
+            <InfoUser userName={userName} />
+            <BtnLogInOut userName={userName} />
         </Navbar>
     );
 }

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import dataAPI from "./dataAPI";
+import userReducer from "./userReducer";
+import postReducer from "./postReducer";
 
 const reducer = combineReducers({
-    dataUser: dataAPI
+    currentUser: userReducer,
+    posts: postReducer
 });
 
 export default reducer;

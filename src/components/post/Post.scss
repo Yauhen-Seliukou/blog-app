@@ -1,0 +1,29 @@
+@import "~bootstrap/scss/bootstrap";
+
+.button-position {
+    text-align: end;
+    
+    .button-card {
+        border: none;
+        background-color: white;
+        color: #007bff;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    } 
+}
+
+.wrapper-post {
+    margin: 10px 0;
+
+    .title-post {
+        cursor: pointer;
+    }
+    
+    .one-category {
+        margin-right: 5px;
+    }
+
+}
+

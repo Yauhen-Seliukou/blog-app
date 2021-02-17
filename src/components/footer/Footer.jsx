@@ -1,14 +1,15 @@
 import React from 'react';
-import { Nav } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+
 import './Footer.scss'
 
 function Footer() {
     return (
-        <Nav className="justify-content-center">
-            <Nav.Item>
+        <Navbar bg="dark" variant="dark">
+            <div className="footer-info">
                 &copy; 2020 BLOG-APP &reg; All rights reserved.
-            </Nav.Item>
-        </Nav>
+            </div>
+        </Navbar>
     );
 }
 

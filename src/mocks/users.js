@@ -4,7 +4,7 @@ const users = [
         lastName: 'Brown',
         email: 'johnBrown92@gmail.com',
         password: 'reo7Pz',
-        id: '1'
+        id: 1
     },
 
     {
@@ -12,7 +12,7 @@ const users = [
         lastName: 'Shiver',
         email: 'neshiv86@yandex.ru',
         password: '12qw21',
-        id: '2'
+        id: 2
     },
 
     {
@@ -20,7 +20,7 @@ const users = [
         lastName: 'Power',
         email: 'peterpower95@gmail.com',
         password: 'Zwt78c',
-        id: '3'
+        id: 3
     },
 
     {
@@ -28,7 +28,7 @@ const users = [
         lastName: 'Lodcer',
         email: 'jesslodcer90@gmail.com',
         password: '1dheg8w',
-        id: '4'
+        id: 4
     }
 ];
 

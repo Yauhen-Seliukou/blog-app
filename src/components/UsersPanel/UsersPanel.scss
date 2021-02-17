@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/bootstrap";
+
+.checbox-my-post,
+.btn-new-post {
+    display: inline-block;
+    width: 50%;
+}
+
+.btn-new-post {
+    text-align: end;
+}

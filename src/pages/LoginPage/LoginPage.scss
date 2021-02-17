@@ -1,0 +1,25 @@
+@import "~bootstrap/scss/bootstrap";
+
+.button-form {
+    margin: 5px;
+}
+
+.error-login {
+    color: red;
+    height: 30px;
+}
+
+.title-form,
+.error-login {
+    text-align: center;
+}
+
+.title-form {
+    margin-bottom: 20px;
+}
+
+.login {
+    margin-top: 20vh;
+    padding: 50px 40px 20px 40px;
+    
+}

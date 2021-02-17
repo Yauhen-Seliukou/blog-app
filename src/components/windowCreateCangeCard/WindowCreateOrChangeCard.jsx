@@ -1,35 +1,34 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal, Button, FormControl, FormLabel, Form } from "react-bootstrap";
 import { changePost, saveNewPost } from "../../store/actions/postsActions";
 import { selectUserName, selectUserId } from "../../store/selectors/UserSelectors";
+import { Modal, Button, FormControl, FormLabel, Form } from "react-bootstrap";
 
 import "./WindowCreateOrChangeCard.scss";
 
-function WindowCreateOrChangeCard(props) {
+function WindowCreateOrChangeCard({show, post, onClose}) {
     const dispatch = useDispatch();
-    const { show, post, onClose } =  props;
+    const author = useSelector(selectUserName);
+    const authorID = useSelector(selectUserId);
     const initState = {
         title: post?.title || '',
         description: post?.description || '',
         categories: post?.categories || []
     };
     const [formState, setFormState] = useState(initState);
-    const author = useSelector(selectUserName);
-    const authorID = useSelector(selectUserId);
 
     const handleTitleChange = (e) => {
         setFormState({...formState, title: e.target.value});
-    }
+    };
 
     const handleDescriptionChange = (e) => {
         setFormState({...formState, description: e.target.value});
-    }
+    };
 
     const handleCategoryChange = (e) => {
         const selectedValue = [...e.target.options].filter(x => x.selected).map(y => y.value);
         setFormState({...formState, categories: selectedValue});
-    }
+    };
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -55,7 +54,7 @@ function WindowCreateOrChangeCard(props) {
             dispatch(saveNewPost(post));
         }
         onClose();
-    }
+    };
 
     return (
         <Modal
@@ -68,7 +67,7 @@ function WindowCreateOrChangeCard(props) {
         >
             <Form onSubmit={handleSave}>
                 <Modal.Header closeButton>
-                    <b>{props.post ? 'Change post' : 'Create post'}</b>
+                    <b>{post ? 'Change post' : 'Create post'}</b>
                 </Modal.Header>
                 <Modal.Body>
                     <FormLabel className="title-label">Title</FormLabel>

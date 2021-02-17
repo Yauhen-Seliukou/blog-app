@@ -1,10 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { selectUserName } from "../../store/selectors/UserSelectors";
 import { Navbar, Nav, NavbarBrand } from "react-bootstrap";
 import BtnLogInOut from "../BtnLogInOut/BtnLogInOut";
 import InfoUser from "../UserInfo/UserInfo";
-import { selectUserName } from "../../store/selectors/UserSelectors";
 
 import './Header.scss';
 

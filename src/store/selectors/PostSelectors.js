@@ -15,3 +15,7 @@ export const selectUserPost = createSelector(
 export const selectPostById = (state, postId) => {
     return state.posts.list.find(post => post.postID === postId);
 };
+
+export const selectIsStatusLoading = (state) => {
+    return state.posts.status === 'request';
+};

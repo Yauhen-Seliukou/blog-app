@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
+
 import "./WindowDeletePost.scss";
 
-function WindowDeletePost(props) {
-    const { show, onDelete, onClose } = props;
+function WindowDeletePost({show, onDelete, onClose}) {
     return (
         <Modal 
             show={show}
@@ -15,8 +15,8 @@ function WindowDeletePost(props) {
             </Modal.Header>
             <Modal.Body className="message-text">Are you sure you want to delete the post?</Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={props.onClose}>No</Button>
-                <Button variant="primary" onClick={props.onDelete}>Yes</Button>
+                <Button variant="secondary" onClick={onClose}>No</Button>
+                <Button variant="primary" onClick={onDelete}>Yes</Button>
             </Modal.Footer>
         </Modal>
     );

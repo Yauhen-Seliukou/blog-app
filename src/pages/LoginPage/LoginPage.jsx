@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import { Form, FormGroup, FormControl, FormLabel, Col, Row, Button, Nav, Container, Card } from 'react-bootstrap';
 import { useSelector, useDispatch} from "react-redux";
-import fetchLogin from "../../store/reducers/fetchLogin";
+import fetchLogin from "../../store/actions/fetchLogin";
 import { selectLoginError, selectUserId } from "../../store/selectors/UserSelectors";
+import { Form, FormGroup, FormControl, FormLabel, Col, Row, Button, Nav, Container, Card } from 'react-bootstrap';
 
-import './Login.scss';
+import './LoginPage.scss';
 
 function Login() {
     const history = useHistory();
     const dispatch = useDispatch();
     const error = useSelector(selectLoginError);
     const userId = useSelector(selectUserId);
-    
     const [loginForm, setLoginForm] = useState({});
 
-    if (userId) {
-        history.push('/');
-    }
+    useEffect(() => {
+        userId && history.push('/');
+    }, [history, userId]);
     
     const handleChangeEmail = (e) => {
         setLoginForm({ ...loginForm, email: e.target.value });
-    }
+    };
 
     const handleChangePassword = (e) => {
         setLoginForm({ ...loginForm, password: e.target.value });
-    }
+    };
     
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(fetchLogin(loginForm));
-    }
+    };
 
     const handleClickClear = () => {
         setLoginForm({email: '', password: ''});
-    }
+    };
 
     return (
         <Container>

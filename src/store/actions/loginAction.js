@@ -1,35 +1,28 @@
 import { 
-    LOGIN_SUCCESS_REQUEST, 
-    LOGIN_FAIL_REQUEST,
-    LOGIN_QUOTE_REQUEST,
-    LOG_IN,
+    FETCH_LOGIN_SUCCESS, 
+    FETCH_LOGIN_FAIL,
+    FETCH_LOGIN_REQUEST,
     LOG_OUT
 } from "../constans";
 
 
-export const loginSuccessRequest = (user) => {
+export const fetchLoginSuccess = (user) => {
     return {
-        type: LOGIN_SUCCESS_REQUEST,
+        type: FETCH_LOGIN_SUCCESS,
         payload: user
     }
 }
 
-export const loginFailRequest = (textError) => {
+export const fetchLoginFail = (textError) => {
     return {
-        type: LOGIN_FAIL_REQUEST,
+        type: FETCH_LOGIN_FAIL,
         error: textError
     }
 }
 
-export const loginQuoteRequest = () => {
+export const fetchLoginRequest = () => {
     return {
-        type: LOGIN_QUOTE_REQUEST
-    }
-}
-
-export const login = () => {
-    return {
-        type: LOG_IN
+        type: FETCH_LOGIN_REQUEST
     }
 }
 

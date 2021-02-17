@@ -1,13 +1,13 @@
 import { 
-    loginFailRequest, 
-    loginQuoteRequest, 
-    loginSuccessRequest 
-} from "../actions/loginAction";
-
+    fetchLoginFail, 
+    fetchLoginRequest, 
+    fetchLoginSuccess 
+} from "./loginAction";
+import { setDataToLocalStorage } from "../../services/commandForLocalStorage";
 import users from "../../mocks/users";
 
 const fetchLogin = ({ email, password }) => (dispatch) => { 
-    dispatch(loginQuoteRequest());
+    dispatch(fetchLoginRequest());
     setTimeout(() => {
         const dataUser = users.filter((user) => user.email === email && user.password === password);
         if (dataUser.length) {
@@ -23,10 +23,10 @@ const fetchLogin = ({ email, password }) => (dispatch) => {
                 email, 
                 id 
             }
-            localStorage.setItem('user', JSON.stringify(user));
-            dispatch(loginSuccessRequest(dataUser[0]));
+            setDataToLocalStorage('user', user);
+            dispatch(fetchLoginSuccess(user));
         } else {
-            dispatch(loginFailRequest('Not found your data'));
+            dispatch(fetchLoginFail('Not found your data'));
         }
         
     }, 1000);

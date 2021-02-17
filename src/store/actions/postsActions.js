@@ -2,9 +2,9 @@ import {
     CHANGE_POST, 
     DELETE_POST, 
     SAVE_NEW_POST, 
-    POSTS_FAIL_REQUEST, 
-    POSTS_QUOTE_REQUEST, 
-    POSTS_SUCCESS_REQUEST
+    FETCH_POST_FAIL, 
+    FETCH_POST_REQUEST, 
+    FETCH_POST_SUCCESS
 } from "../constans";
 
 
@@ -30,22 +30,22 @@ export const saveNewPost = (post) => {
     }
 }
 
-export const postsFailRequest = (error) => {
+export const fetchPostsFail = (error) => {
     return {
-        type: POSTS_FAIL_REQUEST,
+        type: FETCH_POST_FAIL,
         payload: error
     }
 }
 
-export const postsQuoteRequest = () => {
+export const fetchPostsRequest = () => {
     return {
-        type: POSTS_QUOTE_REQUEST
+        type: FETCH_POST_REQUEST
     }
 }
 
-export const postsSuccessRequest = (posts) => {
+export const fetchPostsSuccess = (posts) => {
     return {
-        type: POSTS_SUCCESS_REQUEST,
+        type: FETCH_POST_SUCCESS,
         payload: posts
     }
 }

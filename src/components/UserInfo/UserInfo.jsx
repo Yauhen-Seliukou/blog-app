@@ -2,10 +2,10 @@ import React from 'react';
 
 import './UserInfo.scss';
 
-function InfoUser(props) {
+function InfoUser({userName}) {
     return (
         <div className="info-user">
-            {props.userName}
+            {userName}
         </div>
     );
 }

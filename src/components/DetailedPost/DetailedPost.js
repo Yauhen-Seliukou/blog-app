@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Badge } from 'react-bootstrap';
-import WindowCreateOrChangeCard from "../WindowCreateCangeCard/WindowCreateOrChangeCard";
-import WindowDeletePost from "../WindowDeletePost/WindowDeletePost";
 import { deletePost } from "../../store/actions/postsActions";
 import { selectUserId } from "../../store/selectors/UserSelectors";
 import formatDate from "../../services/formatDade";
+import { Badge } from 'react-bootstrap';
+import WindowCreateOrChangeCard from "../WindowCreateCangeCard/WindowCreateOrChangeCard";
+import WindowDeletePost from "../WindowDeletePost/WindowDeletePost";
 
 import './DetailedPost.scss';
 
-const DetailedPost = (props) => {
+const DetailedPost = ({post}) => {
     const dispatch = useDispatch();
-    
+    const userId = useSelector(selectUserId);
+    const [isModalShow, setModalShow] = useState(false);
+    const [isModalDeleteShow, setModalDeleteShow] = useState(false);
     const {
         title, 
         date,
@@ -21,24 +23,19 @@ const DetailedPost = (props) => {
         authorID,
         description,
         categories
-    } = props.post;
-    
-    const [isModalShow, setModalShow] = useState(false);
-    const [isModalDeleteShow, setModalDeleteShow] = useState(false);
-    
-    const userId = useSelector(selectUserId);
+    } = post;
     
     const onClickChange = () => {
         setModalShow(true);
-    }
+    };
 
     const onClickRemove = () => {
         setModalDeleteShow(true);
-    }
+    };
 
     const removePost = () => {
         dispatch(deletePost(postID));
-    }
+    };
 
     return (
         <div className="detailed-post">
@@ -61,19 +58,19 @@ const DetailedPost = (props) => {
                     <button className="button-post" onClick={onClickChange}>Change</button>
                     <button className="button-post" onClick={onClickRemove}>Remove</button>
                 </div> 
-                : ''}
+                : null}
             </div>
             
-            <WindowCreateOrChangeCard 
-                post={props.post} 
+            {isModalShow && <WindowCreateOrChangeCard 
+                post={post} 
                 show={isModalShow} 
                 onClose={() => setModalShow(false)} 
-            />
-            <WindowDeletePost 
+            />}
+            {isModalDeleteShow && <WindowDeletePost 
                 show={isModalDeleteShow} 
                 onDelete={() => removePost()} 
                 onClose={() => setModalDeleteShow(false)} 
-            />
+            />}
         </div>
     );
 }

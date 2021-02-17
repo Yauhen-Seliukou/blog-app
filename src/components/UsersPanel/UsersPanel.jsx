@@ -3,7 +3,7 @@ import { Button, FormCheck } from "react-bootstrap";
 
 import "./UsersPanel.scss";
 
-function UsersPanel(props) {
+function UsersPanel({handleChangeCheckbox, handleClickNewPost}) {
     return (
         <div>
             <span className="checbox-my-post">
@@ -11,13 +11,13 @@ function UsersPanel(props) {
                     type="checkbox" 
                     label="Only my posts" 
                     inline
-                    onChange={props.handleChangeCheckbox}
+                    onChange={handleChangeCheckbox}
                 />
             </span>
             <span className="btn-new-post">
                 <Button 
                     variant="primary" 
-                    onClick={props.handleClickNewPost}
+                    onClick={handleClickNewPost}
                 >
                     New post
                 </Button>

@@ -4,7 +4,8 @@ export const selectUserName = (state) => {
 };
 
 export const selectUserId = (state) => {
-    return state.currentUser.user?.id || false;
+    const user = state.currentUser.user;
+    return user ? user.id : null;
 };
 
 export const selectLoginError = (state) => {

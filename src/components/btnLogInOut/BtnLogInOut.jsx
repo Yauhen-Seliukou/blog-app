@@ -1,20 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch} from "react-redux";
+import { logout } from "../../store/actions/loginAction";
 import { Button } from "react-bootstrap";
-import { logout, login } from "../../store/actions/loginAction";
 
-const BtnLogInOut = (props) => {
+const BtnLogInOut = ({userName}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const userName = props.userName;
 
     const handleClick = () => {
         if(userName) {
             dispatch(logout());
             history.push('/');
         } else {
-            dispatch(login());
             history.push('/login');
         }
     }

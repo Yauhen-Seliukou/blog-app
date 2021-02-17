@@ -1,10 +1,10 @@
 import {
-    LOGIN_FAIL_REQUEST,
-    LOGIN_QUOTE_REQUEST,
-    LOGIN_SUCCESS_REQUEST,
-    LOG_OUT,
-    LOG_IN 
+    FETCH_LOGIN_FAIL,
+    FETCH_LOGIN_REQUEST,
+    FETCH_LOGIN_SUCCESS,
+    LOG_OUT
 } from "../constans";
+import { setDataToLocalStorage } from "../../services/commandForLocalStorage";
 
 const initialState = {
     error: '',
@@ -13,19 +13,19 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOGIN_FAIL_REQUEST: 
+        case FETCH_LOGIN_FAIL: 
             return {
                 ...state, 
                 error: action.error
         };
         
-        case LOGIN_SUCCESS_REQUEST: 
+        case FETCH_LOGIN_SUCCESS: 
             return {
                 ...state, 
                 user: action.payload
             };
         
-        case LOGIN_QUOTE_REQUEST: 
+        case FETCH_LOGIN_REQUEST: 
             return {
                 ...state, 
                 user: null, 
@@ -33,19 +33,13 @@ const userReducer = (state = initialState, action) => {
             };
         
         case LOG_OUT:
-            localStorage.setItem('user', null); 
+            setDataToLocalStorage('user', null); 
             return {
                 ...state, 
                 user: null, 
                 error: ''
             };
-       
-        case LOG_IN: 
-            return {
-                ...state, 
-                error: ''
-            };
-        
+
         default:
             return state;
     }

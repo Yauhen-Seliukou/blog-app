@@ -1,55 +1,69 @@
 import { 
-    POSTS_FAIL_REQUEST,
-    POSTS_QUOTE_REQUEST,
-    POSTS_SUCCESS_REQUEST,
+    FETCH_POST_FAIL,
+    FETCH_POST_REQUEST,
+    FETCH_POST_SUCCESS,
     CHANGE_POST,
     SAVE_NEW_POST,
     DELETE_POST 
 } from "../constans";
+import { setDataToLocalStorage } from "../../services/commandForLocalStorage";
 
+let posts = [];
 const initialState = {
+    status: 'initial',
     error: '',
     list: []
 };
 
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
-        case POSTS_FAIL_REQUEST: 
+        case FETCH_POST_FAIL: 
             return {
                 ...state, 
+                status: 'fail',
                 error: action.error, 
                 list: []
             };
         
-        case POSTS_SUCCESS_REQUEST: 
+        case FETCH_POST_SUCCESS: 
+            posts = action.payload;
+            setDataToLocalStorage('posts', posts);
             return {
                 ...state, 
-                list: action.payload, 
+                status: 'success',
+                list: posts, 
             };
         
-        case POSTS_QUOTE_REQUEST: 
+        case FETCH_POST_REQUEST: 
             return {
                 ...state, 
+                status: 'request',
                 list: [], 
                 error: '', 
             };
         
         case CHANGE_POST: 
+            posts = [...state.list.filter(post => post.postID !== action.payload.postID), action.payload];
+            setDataToLocalStorage('posts', posts);
             return {
                 ...state,  
-                list: [...state.list.filter(post => post.postID !== action.payload.postID), action.payload]
+                list: posts
             };
         
         case SAVE_NEW_POST:
+            posts = [...state.list, action.payload];
+            setDataToLocalStorage('posts', posts);
             return {
                 ...state,  
-                list: [...state.list, action.payload]
+                list: posts
             };
         
         case DELETE_POST:
+            posts = [...state.list.filter(post => post.postID !== action.payload)];
+            setDataToLocalStorage('posts', posts);
             return {
                 ...state,  
-                list: [...state.list.filter(post => post.postID !== action.payload)]
+                list: posts
             };
         
         default:
